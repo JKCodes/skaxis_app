@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "MainPages", type: :request do
 
-  let(:basic_title) { "Skaxis -" }
+  let(:basic_title) { "Skaxis" }
 
   describe "Home page" do
   
@@ -11,9 +11,14 @@ RSpec.describe "MainPages", type: :request do
       expect(page).to have_content('Skaxis')
     end
 
-    it "should have the title 'Home'" do
+    it "should have the base title" do
       visit '/main_pages/home'
-      expect(page).to have_title("#{basic_title} Home")
+      expect(page).to have_title('Skaxis')
+    end
+
+    it "should not have a modified title" do
+      visit '/main_pages/home'
+      expect(page).not_to have_title("#{basic_title} - Home")
     end
   end
 
@@ -26,7 +31,7 @@ RSpec.describe "MainPages", type: :request do
 
     it "should have the title 'Help'" do
       visit '/main_pages/help'
-      expect(page).to have_title("#{basic_title} Help")
+      expect(page).to have_title("#{basic_title} - Help")
     end
   end
 
@@ -38,7 +43,7 @@ RSpec.describe "MainPages", type: :request do
     end
     it "should have the title 'About Me'" do
       visit '/main_pages/about'
-      expect(page).to have_title("#{basic_title} About Me")
+      expect(page).to have_title("#{basic_title} - About Me")
     end 
   end
 end

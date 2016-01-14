@@ -1,49 +1,50 @@
 require 'rails_helper'
+require 'support/utilities.rb'
 
 RSpec.describe "MainPages", type: :request do
 
-  let(:basic_title) { "Skaxis" }
+  subject { page }
 
   describe "Home page" do
-  
-    it "should have 'Skaxis'" do
-      visit '/main_pages/home'
-      expect(page).to have_content('Skaxis')
-    end
+    before { visit root_path }
 
-    it "should have the base title" do
-      visit '/main_pages/home'
-      expect(page).to have_title('Skaxis')
-    end
-
-    it "should not have a modified title" do
-      visit '/main_pages/home'
-      expect(page).not_to have_title("#{basic_title} - Home")
-    end
+    it { is_expected.to have_content('Skaxis') }
+    it { is_expected.to have_title(full_title('')) }
+    it { is_expected.not_to have_title('Skaxis - Home') }
   end
 
   describe "Help page" do
+    before { visit help_path }
 
-    it "should have 'Help'" do
-      visit '/main_pages/help'
-      expect(page).to have_content('Help')
-    end
-
-    it "should have the title 'Help'" do
-      visit '/main_pages/help'
-      expect(page).to have_title("#{basic_title} - Help")
-    end
+    it { is_expected.to have_content('Help') }
+    it { is_expected.to have_title(full_title('Help')) }
   end
 
   describe "About page" do
-   
-    it "should have 'About Me'" do
-      visit '/main_pages/about'
-      expect(page).to have_content('About Me')
-    end
-    it "should have the title 'About Me'" do
-      visit '/main_pages/about'
-      expect(page).to have_title("#{basic_title} - About Me")
-    end 
+    before { visit about_path }
+
+    it { is_expected.to have_content('About') }
+    it { is_expected.to have_title(full_title('About Me')) }
+  end
+
+  describe "Contact page" do
+    before { visit contact_path }
+
+    it { is_expected.to have_content('Contact') }
+    it { is_expected.to have_title(full_title('Contact')) }
+  end
+  
+  describe "Terms page" do
+    before { visit terms_path }
+
+    it { is_expected.to have_content('Terms') }
+    it { is_expected.to have_title(full_title('Terms')) }
+  end
+
+  describe "Privacy page" do
+    before { visit privacy_path }
+
+    it { is_expected.to have_content('Privacy') }
+    it { is_expected.to have_title(full_title('Privacy')) }
   end
 end

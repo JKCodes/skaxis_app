@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
 gem 'pg'
+gem 'bcrypt'
 gem 'bootstrap-sass'
 
 group :development, :test do

@@ -13,6 +13,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to respond_to(:description) }
     it { is_expected.to respond_to(:password) }
     it { is_expected.to respond_to(:password_confirmation) }
+    it { is_expected.to respond_to(:remember_digest) }
   end
 
   describe "validations" do
@@ -107,6 +108,16 @@ RSpec.describe User, type: :model do
       describe "with invalid password" do
         it { is_expected.not_to eq queried_user.authenticate('wrong password') }
       end
+    end
+  end
+
+  describe "remember_digest" do
+    before do
+      user.extend(SessionsHelper)
+    end
+
+    it "should not authenticate if the value is nil" do
+      expect(user.authenticated?('')).to eq false
     end
   end
 end

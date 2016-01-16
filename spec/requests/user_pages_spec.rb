@@ -36,26 +36,27 @@ RSpec.describe "UserPages", type: :request do
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
-      
+
       describe "after saving the user" do
         before { click_button submit }
-        let(:user) { User.find_by(email: 'tester@example.com') }
+        let(:user) { User.find_by(email: "tester@example.com")}
 
-        it { is_expected.to have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { is_expected.to have_link('Log out') }
         it { is_expected.to have_title(user.name) }
-      end
+        it { is_expected.to have_selector('div.alert.alert-success', text: 'Welcome') }
+      end                            
     end
     
     describe "with invalid information" do
       it "should not create a user" do
         expect { click_button submit }.not_to change(User, :count)
       end
-      
+
       describe "after submission" do
         before { click_button submit }
-
-        it { is_expected.to have_content('error') }
+        
         it { is_expected.to have_title('Sign up') }
+        it { is_expected.to have_content('error') }
       end
     end
   end

@@ -13,6 +13,7 @@ end
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'factory_girl_rails'
 end
 
 gem 'sass-rails', '~> 5.0'
@@ -28,4 +29,5 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'puma'
 end

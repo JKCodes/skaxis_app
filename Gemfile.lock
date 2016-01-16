@@ -64,6 +64,11 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     ffi (1.9.10)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -87,6 +92,7 @@ GEM
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
+    puma (2.15.3)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -184,9 +190,11 @@ DEPENDENCIES
   bootstrap-sass
   capybara
   coffee-rails (~> 4.1.0)
+  factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
   pg
+  puma
   rails (= 4.2.5)
   rails_12factor
   rspec-rails

@@ -1,0 +1,11 @@
+<li>
+   <h3 class="left"><%= link_to user.name, user %></h3>
+   <p class="indent">Status: <%= user.status %></p>
+   <p class="indent">Description: <%= user.description %></p>
+   <% if current_user.admin? && !current_user?(user) %>
+     <p class="indent">
+       <%= link_to "Delete user", user, method: :delete,
+                                        data: { confirm: "Are you sure?" } %>
+     </p>
+   <% end %>
+</li>

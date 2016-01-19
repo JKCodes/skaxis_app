@@ -5,6 +5,9 @@ gem 'rails', '4.2.5'
 gem 'pg'
 gem 'bcrypt'
 gem 'bootstrap-sass'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :development, :test do
   gem 'rspec-rails'

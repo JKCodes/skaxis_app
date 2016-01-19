@@ -47,8 +47,16 @@ textarea {
   background-color: #FBFBFB;
 }
 
+.indent {
+  padding-left: 20px !important;
+}
+
+.left {
+  text-align: left !important;
+}
+
 .middle {
-  text-align: center;
+  text-align: center !important;
 }
 
 // Font styles
@@ -143,6 +151,18 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+// Users index
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+  }
 }
 
 // Profile

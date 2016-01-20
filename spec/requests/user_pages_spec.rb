@@ -70,13 +70,14 @@ RSpec.describe "UserPages", type: :request do
 
   describe "signup" do
     before { visit signup_path }
+    before { ActionMailer::Base.deliveries.clear }
 
     let(:submit) { "Create my account" }
 
     describe "with valid information" do
       before do
         fill_in "Name",         with: "Test User"
-        fill_in "Email",        with: "tester@example.com"
+        fill_in "Email",        with: "testing@example.com"
         fill_in "Password",     with: "secret"
         fill_in "Confirmation", with: "secret"
       end
@@ -87,11 +88,36 @@ RSpec.describe "UserPages", type: :request do
 
       describe "after saving the user" do
         before { click_button submit }
-        let(:user) { User.find_by(email: "tester@example.com")}
+        let(:user) { User.find_by(email: "testing@example.com")}
 
-        it { is_expected.to have_link('Log out') }
-        it { is_expected.to have_title(user.name) }
-        it { is_expected.to have_selector('div.alert.alert-success', text: 'Welcome') }
+        it "should send a confimration email" do
+          expect(ActionMailer::Base.deliveries.size).to eq 1
+        end
+
+        describe "with account activation link" do
+          it "user should not be activated" do
+            expect(user.activated?).not_to eq true
+          end
+          
+          describe "without activating the link" do
+            before { valid_login(user) }
+            it { is_expected.to have_title(full_title('')) }
+          end
+
+          describe "after activating the link with wrong token" do
+            before { get edit_account_activation_path("invalid") }
+            it { is_expected.to have_title(full_title('')) }
+          end
+          
+          describe "after activating the link with valid token" do
+            before { user.activate }
+            
+            it "user should be activated" do
+              expect(user.activated?).to eq true
+            end
+          end
+        end
+
       end                            
     end
     

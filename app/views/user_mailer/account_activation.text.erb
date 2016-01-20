@@ -1,0 +1,5 @@
+Hi <%= @user.name %>,
+
+Welcome to Skaxis!  Please click on the link below to activate your account.
+You must activate your account to use Skaxis.
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

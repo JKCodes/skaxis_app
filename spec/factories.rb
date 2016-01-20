@@ -6,6 +6,8 @@ FactoryGirl.define do
     description "test description"
     password "secret"
     password_confirmation "secret"
+    activated true
+    activated_at Time.zone.now
 
     factory :admin do
       admin true
